@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+
+    <meta charset="utf-8">
+    <title> ReactionTester</title>
+    <style type="text/css">
+    #rect {
+        background-color: green;
+        width: 100px;
+        height: 100px;
+        border: 5px black;
+        border-style: solid;
+        display: none;
+        position : relative;
+    }
+    body {
+      font-size:120%;
+
+    }
+
+
+    </style>
+    <h1>WANNA KNOW HOW FAST YOU REACT !</h1>
+  </head>
+  <body>
+    <p> Just click when you see something appearing xD </p>
+    <p>Time Taken : <span id="timetaken"></span></p>
+
+    <div id="rect">   </div>
+    <script type="text/javascript">
+
+          var d = new Date().getTime();
+          function getRandomColor()  {
+  var letters = '0123456789ABCDEF';
+  var color = '#';
+  for (var i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
+  }
+  return color;
+}
+
+
+
+      function appear()  {
+// Shifting randomly
+
+        var width = Math.random() * 100;
+        var height = Math.random() * 100;
+        var top = Math.random()* 400;
+        var left = Math.random()* 400;
+        document.getElementById("rect").style.backgroundColor = getRandomColor();
+        document.getElementById("rect").style.top = top +"px";
+        document.getElementById("rect").style.left = left +"px";
+        document.getElementById("rect").style.width = width +"px";
+        document.getElementById("rect").style.height = height +"px";
+        document.getElementById("rect").style.display ="block";
+        d = new Date().getTime();
+
+      }
+
+      function appearafter(){
+           setTimeout(appear,Math.random()*3000);
+      }
+      appearafter();
+
+      document.getElementById("rect").onclick = function() {
+        document.getElementById("rect").style.display = "none";
+        var e = new Date().getTime();
+        var n = (e-d)/1000;
+        document.getElementById("timetaken").innerHTML = n + "s";
+        appearafter();
+
+      }
+
+
+
+    </script>
+  </body>
+</html>
